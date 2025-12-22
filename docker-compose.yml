@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  rag-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ivc_ragbot
+    restart: unless-stopped
+    
+    # Переменные окружения из .env файла
+    env_file:
+      - .env
+    
+    # Volumes для сохранения данных
+    volumes:
+      # База данных ChromaDB (сохраняется между перезапусками)
+      - ./chroma_db:/app/chroma_db
+      # Временные файлы (можно очистить при необходимости)
+      - ./temp_files:/app/temp_files
+    
+    # Ограничения ресурсов для предотвращения OOM
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    
+    # Логирование
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # Сеть
+    network_mode: bridge
+

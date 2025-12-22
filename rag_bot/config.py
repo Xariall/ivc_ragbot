@@ -10,14 +10,20 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Telegram Bot Token
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-if not TELEGRAM_BOT_TOKEN:
-    raise ValueError("TELEGRAM_BOT_TOKEN не найден в переменных окружения!")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
+if not TELEGRAM_BOT_TOKEN or TELEGRAM_BOT_TOKEN == "your_telegram_bot_token_here":
+    print("⚠️  ВНИМАНИЕ: TELEGRAM_BOT_TOKEN не найден в переменных окружения!")
+    print("   Создайте файл .env и добавьте: TELEGRAM_BOT_TOKEN=ваш_токен")
+    print("   Получить токен можно у @BotFather в Telegram")
+    # Не падаем сразу, чтобы можно было проверить в main.py
 
 # Groq API Key
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-if not GROQ_API_KEY:
-    raise ValueError("GROQ_API_KEY не найден в переменных окружения!")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "").strip()
+if not GROQ_API_KEY or GROQ_API_KEY == "your_groq_api_key_here":
+    print("⚠️  ВНИМАНИЕ: GROQ_API_KEY не найден в переменных окружения!")
+    print("   Создайте файл .env и добавьте: GROQ_API_KEY=ваш_ключ")
+    print("   Получить ключ можно на https://console.groq.com/")
+    # Не падаем сразу, чтобы можно было проверить в main.py
 
 # Параметры обработки документов
 CHUNK_SIZE = 1000  # Размер чанка в символах
