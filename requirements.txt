@@ -1,0 +1,23 @@
+# Telegram Bot
+python-telegram-bot>=20.7
+
+# LangChain для работы с LLM
+langchain>=0.1.0
+langchain-community>=0.0.10
+langchain-groq>=0.0.1
+langchain-core>=0.1.0
+
+# Векторная база данных
+chromadb>=0.4.22
+
+# Обработка документов
+pypdf>=4.0.1
+python-docx>=1.1.0
+
+# Эмбеддинги
+sentence-transformers>=2.3.1
+torch>=2.0.0
+
+# Утилиты
+python-dotenv>=1.0.0
+
